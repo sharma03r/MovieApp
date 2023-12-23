@@ -9,17 +9,26 @@ class MovieCard extends Component {
       price: 199,
       rating: 8.9,
       stars: 0,
+      fav: false,
     };
   }
   addStars = () => {
     this.setState((prevState) => {
+      if (prevState.stars >= 5) {
+        return;
+      }
       return {
         stars: prevState.stars + 0.5,
       };
     });
   };
+  toggleFavorite = () => {
+    this.setState({
+      fav: !this.state.fav,
+    });
+  };
   render() {
-    const { title, plot, price, rating, stars } = this.state;
+    const { title, plot, price, rating, stars, fav } = this.state;
     return (
       <div className="main">
         <div className="movie-card">
@@ -54,8 +63,16 @@ class MovieCard extends Component {
                 />
                 <span> {stars}</span>
               </div>
-              <div className="favourite-btn">Favourite</div>
-              <div className="cart-btn">Add to Cart</div>
+              {
+                <button
+                  className={fav ? "favourite-btn" : "unfavourite-btn"}
+                  onClick={this.toggleFavorite}
+                >
+                  {fav ? "Unfavourite" : "Favourite"}
+                </button>
+              }
+
+              <button className="cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
