@@ -1,17 +1,6 @@
 import { Component } from "react";
 
 class MovieCard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "The Avengers",
-      plot: "Supernatural heroes",
-      price: 199,
-      rating: 8.9,
-      stars: 0,
-      fav: false,
-    };
-  }
   addStars = () => {
     this.setState((prevState) => {
       if (prevState.stars >= 5) {
@@ -28,7 +17,7 @@ class MovieCard extends Component {
     });
   };
   render() {
-    const { title, plot, price, rating, stars, fav } = this.state;
+    const { title, plot, price, rating, stars, fav } = this.props.movies;
     return (
       <div className="main">
         <div className="movie-card">
