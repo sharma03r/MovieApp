@@ -1,10 +1,21 @@
 import { Component } from "react";
+import styled from "styled-components";
+
+const Nav = styled.div`
+  width: 100%;
+  height: 70px;
+  background: #4267b2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+`;
 
 class Navbar extends Component {
   render() {
     return (
       <>
-        <div style={styles.nav}>
+        <Nav>
           <div className="title" style={styles.title}>
             Movie App
           </div>
@@ -16,21 +27,13 @@ class Navbar extends Component {
             />
             <span style={styles.cartCount}>3</span>
           </div>
-        </div>
+        </Nav>
       </>
     );
   }
 }
 
 const styles = {
-  nav: {
-    height: 70,
-    background: "#4267b2",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    position: "relative",
-  },
   title: {
     fontSize: 30,
     color: "#fff",
