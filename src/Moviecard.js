@@ -1,21 +1,6 @@
 import { Component } from "react";
 
 class MovieCard extends Component {
-  addStars = () => {
-    this.setState((prevState) => {
-      if (prevState.stars >= 5) {
-        return;
-      }
-      return {
-        stars: prevState.stars + 0.5,
-      };
-    });
-  };
-  toggleFavorite = () => {
-    this.setState({
-      fav: !this.state.fav,
-    });
-  };
   render() {
     const { title, plot, price, rating, stars, fav } = this.props.movies;
     return (
@@ -60,7 +45,9 @@ class MovieCard extends Component {
               {
                 <button
                   className={fav ? "favourite-btn" : "unfavourite-btn"}
-                  onClick={this.toggleFavorite}
+                  onClick={() => {
+                    this.props.toggleFav(this.props.movies);
+                  }}
                 >
                   {fav ? "Unfavourite" : "Favourite"}
                 </button>

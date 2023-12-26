@@ -7,6 +7,7 @@ class MovieList extends Component {
     this.state = {
       movies: [
         {
+          id: 1,
           title: "The Avengers",
           plot: "Supernatural heroes",
           price: 199,
@@ -15,6 +16,7 @@ class MovieList extends Component {
           fav: false,
         },
         {
+          id: 2,
           title: "The Avengers",
           plot: "Supernatural heroes",
           price: 199,
@@ -23,6 +25,7 @@ class MovieList extends Component {
           fav: false,
         },
         {
+          id: 3,
           title: "The Avengers",
           plot: "Supernatural heroes",
           price: 199,
@@ -55,6 +58,14 @@ class MovieList extends Component {
       movies: movies,
     });
   };
+  handleToggleFav = (movie) => {
+    const { movies } = this.state;
+    const movieId = movies.indexOf(movie);
+    movies[movieId].fav = !movies[movieId].fav;
+    this.setState({
+      movies: movies,
+    });
+  };
   render() {
     const { movies } = this.state;
     return (
@@ -64,6 +75,8 @@ class MovieList extends Component {
             movies={movie}
             addStars={this.handleIncStar}
             decStars={this.handleDecStar}
+            toggleFav={this.handleToggleFav}
+            key={movie.id}
           />
         ))}
       </>
