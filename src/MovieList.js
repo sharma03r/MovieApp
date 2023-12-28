@@ -5,6 +5,7 @@ class MovieList extends Component {
   constructor() {
     super();
     this.state = {
+      cartCount: 0,
       movies: [
         {
           id: 1,
@@ -14,6 +15,7 @@ class MovieList extends Component {
           rating: 8.9,
           stars: 0,
           fav: false,
+          isInCart: false,
         },
         {
           id: 2,
@@ -23,6 +25,7 @@ class MovieList extends Component {
           rating: 8.9,
           stars: 0,
           fav: false,
+          isInCart: false,
         },
         {
           id: 3,
@@ -32,6 +35,7 @@ class MovieList extends Component {
           rating: 8.9,
           stars: 0,
           fav: false,
+          isInCart: false,
         },
       ],
     };
@@ -66,8 +70,20 @@ class MovieList extends Component {
       movies: movies,
     });
   };
+  handleToggleCart = (movie) => {
+    let { movies, cartCount } = this.state;
+    const movieId = movies.indexOf(movie);
+    movies[movieId].isInCart = !movies[movieId].isInCart;
+    if (movies[movieId].isInCart) cartCount++;
+    else cartCount--;
+    this.setState({
+      movies: movies,
+      cartCount: cartCount,
+    });
+    console.log(cartCount);
+  };
   render() {
-    const { movies } = this.state;
+    const { movies, cartCount } = this.state;
     return (
       <>
         {movies.map((movie) => (
@@ -76,6 +92,7 @@ class MovieList extends Component {
             addStars={this.handleIncStar}
             decStars={this.handleDecStar}
             toggleFav={this.handleToggleFav}
+            toggleCart={this.handleToggleCart}
             key={movie.id}
           />
         ))}

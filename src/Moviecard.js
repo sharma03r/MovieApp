@@ -2,7 +2,8 @@ import { Component } from "react";
 
 class MovieCard extends Component {
   render() {
-    const { title, plot, price, rating, stars, fav } = this.props.movies;
+    const { title, plot, price, rating, stars, fav, isInCart } =
+      this.props.movies;
     return (
       <div className="main">
         <div className="movie-card">
@@ -53,7 +54,14 @@ class MovieCard extends Component {
                 </button>
               }
 
-              <button className="cart-btn">Add to Cart</button>
+              <button
+                className="cart-btn"
+                onClick={() => {
+                  this.props.toggleCart(this.props.movies);
+                }}
+              >
+                {isInCart ? "Remove From Cart" : "Add to Cart"}
+              </button>
             </div>
           </div>
         </div>
